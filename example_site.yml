@@ -20,31 +20,31 @@
   - { role: hadoop-manager, action: 'update_cluster_conf' }
   - { role: hadoop-manager, action: 'format_hdfs' }
 
-### Start Hadoop Service NameNode 
-- hosts: NameNode
-  roles:
-  - { role: hadoop-manager, action: 'start_namenode' }
-
-### Start Hadoop Service ResourceManager
-- hosts: ResourceManager
-  roles: 
-  - { role: hadoop-manager, action: 'start_resource_manager' }
-
-### Start Hadoop Service JobHistoryServer
-- hosts: JobHistoryServer
-  roles:
-  - { role: hadoop-manager, action: 'start_jobhistory_server' }
-
-### Adding a WebAppProxy nodes to cluster
-- hosts: WebAppProxy
-  roles: 
-  - { role: hadoop-manager, action: 'start_webapp_proxy' }
-
-### Adding slave nodes to Hadoop cluster
-- hosts: slaves
-  roles: 
-  - { role: hadoop-manager, action: 'start_slave' }
-
+#### Start Hadoop Service NameNode 
+#- hosts: NameNode
+#  roles:
+#  - { role: hadoop-manager, action: 'start_namenode' }
+#
+#### Start Hadoop Service ResourceManager
+#- hosts: ResourceManager
+#  roles: 
+#  - { role: hadoop-manager, action: 'start_resource_manager' }
+#
+#### Start Hadoop Service JobHistoryServer
+#- hosts: JobHistoryServer
+#  roles:
+#  - { role: hadoop-manager, action: 'start_jobhistory_server' }
+#
+#### Adding a WebAppProxy nodes to cluster
+#- hosts: WebAppProxy
+#  roles: 
+#  - { role: hadoop-manager, action: 'start_webapp_proxy' }
+#
+#### Adding slave nodes to Hadoop cluster
+#- hosts: slaves
+#  roles: 
+#  - { role: hadoop-manager, action: 'start_slave' }
+#
 ##################################################################################
 ## Example: Add additional node to Hadoop cluster, using already downloaded source
 #- hosts: NameNode
