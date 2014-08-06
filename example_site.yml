@@ -1,0 +1,78 @@
+######################################################################################################
+# Example.: Initial Provision of Hadoop cluster with a given set of nodes specified in inventory file.
+#
+# Download initial Hadoop distribution,
+# Retrigger this once you want to update to newer version of Hadoop
+# link to Hadoop URI can be changed in "vars/main.yml"
+#
+# NOTE: 
+# when ansible version 1.7 will be available this action can be specified
+# along with other roles for "hadoop" group
+#
+- hosts: ResourceManager 
+  roles: 
+  - { role: hadoop-manager, action: 'download' }
+
+### Provisioning Hadoop on all hadoop nodes specified in inventory file
+- hosts: hadoop 
+  roles:
+  - { role: hadoop-manager, action: 'provision' }
+  - { role: hadoop-manager, action: 'update_cluster_conf' }
+  - { role: hadoop-manager, action: 'format_hdfs' }
+
+### Start Hadoop Service NameNode 
+- hosts: NameNode
+  roles:
+  - { role: hadoop-manager, action: 'start_namenode' }
+
+### Start Hadoop Service ResourceManager
+- hosts: ResourceManager
+  roles: 
+  - { role: hadoop-manager, action: 'start_resource_manager' }
+
+### Start Hadoop Service JobHistoryServer
+- hosts: JobHistoryServer
+  roles:
+  - { role: hadoop-manager, action: 'start_jobhistory_server' }
+
+### Adding a WebAppProxy nodes to cluster
+- hosts: WebAppProxy
+  roles: 
+  - { role: hadoop-manager, action: 'start_webapp_proxy' }
+
+### Adding slave nodes to Hadoop cluster
+- hosts: slaves
+  roles: 
+  - { role: hadoop-manager, action: 'start_slave' }
+
+##################################################################################
+## Example: Add additional node to Hadoop cluster, using already downloaded source
+#- hosts: NameNode
+#  roles: 
+#  - { role: hadoop-manager, action: 'provision'
+#
+#- hosts: hadoop
+#  roles:
+#  - { role: hadoop-manager, action: 'update_cluster_conf' }
+#
+#- hosts: NameNode
+#  roles:
+#  - { role: hadoop-manager, action: 'start_namenode' }
+#
+##########################################################################
+## Example: Update configuration for Hadoop cluster in case it was chanegd
+#- hosts: hadoop 
+#  roles:
+#  - { role: hadoop-manager, action: 'update_cluster_conf' }
+#
+############################################
+## Example: Stop specific service in cluster
+#- hosts: WebAppProxy
+#  roles:
+#  - { role: hadoop-manager, action: 'stop_webapp_proxy' }
+#
+#############################################
+## Example: Start specific service in cluster
+#- hosts: NameNode
+#  roles:
+#  - { role: hadoop-manager, action: 'start_namenode' }

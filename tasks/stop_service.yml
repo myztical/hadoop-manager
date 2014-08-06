@@ -1,0 +1,34 @@
+- name: Stop NameNode
+  remote_user: hdfs
+  shell: "{{ install_directory }}/hadoop/sbin/hadoop-daemon.sh --config {{ install_directory }}/hadoop/etc/hadoop --script hdfs stop namenode"
+  register: command_result
+  failed_when: "'stderr:' in command_result.stderr"
+  when: action == "stop_namenode"
+
+- name: Stop Slave
+  remote_user: root
+  shell: "HADOOP_SECURE_DN_USER=hdfs {{ install_directory }}/hadoop/sbin/hadoop-daemon.sh --config {{ install_directory }}/hadoop/etc/hadoop --script hdfs stop datanode"
+  register: command_result
+  failed_when: "'stderr:' in command_result.stderr"
+  when: action == "stop_slave"
+
+- name: Stop ResourceManager
+  remote_user: yarn
+  shell: "{{ install_directory }}/hadoop/sbin/yarn-daemon.sh --config {{ install_directory }}/etc/hadoop --script hdfs stop resourcemanager"
+  register: command_result
+  failed_when: "'stderr:' in command_result.stderr"
+  when: action == "stop_resource_manager"
+
+- name: Stop WebAppProxy
+  remote_user: yarn
+  shell: "{{ install_directory }}/hadoop/sbin/yarn stop proxyserver --config {{ install_directory }}/hadoop/etc/hadoop"
+  register: command_result
+  failed_when: "'stderr:' in command_result.stderr"
+  when: action == "stop_webapp_proxy"
+
+- name: Stop JobHistoryServer
+  remote_user: mapred
+  shell: "{{ install_directory }}/hadoop/sbin/mr-jobhistory-daemon.sh stop historyserver --config {{ install_directory }}/hadoop/etc/hadoop"
+  register: command result
+  failed_when: "'stderr:' in command_result.stderr"
+  when: action == "stop_jobhistory_server"

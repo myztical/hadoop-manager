@@ -1,0 +1,4 @@
+- name: Format HDFS
+  remote_user: root
+  shell: cd {{ install_directory }}/hadoop/bin/ && ./hdfs namenode -format
+  when: action == "format_hdfs" and "{{ ansible_hostname }}" in "{{ groups['NameNode'] }}" 

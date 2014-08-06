@@ -1,0 +1,14 @@
+---
+# vars file for provision_hadoop
+
+java_home: "{{ lookup('env', 'JAVA_HOME')  }}"
+jsvc_home: "/usr/bin/jsvc"
+hostfile: '{{ inventory_dir }}/{{ inventory_file }}'
+install_directory: /opt/
+distribution_link: http://apache.mesi.com.ar/hadoop/common/hadoop-2.4.1/hadoop-2.4.1.tar.gz
+datanode_data_dir: "file:///var/datanode_data_dir"
+namenode_name_dir: "file:///tmp/namenode_name_dir"
+namenode_local_dirs: "file:///tmp/namenode_local_dirs"
+namenode_log_dirs: "file:///var/log/"
+nodemanager_local_dirs: "file:///var/nodemanager_local_dirs"
+nodemanager_log_dirs: "file:///log/"

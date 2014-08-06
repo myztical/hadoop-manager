@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Serge C.
+  description: This role that can be used to install and manage Hadoop cluster ver.:(2.4.1)
+  license: license GPLv2
+  min_ansible_version: 1.6
+  platforms:
+  - name: GenericUNIX
+    versions:
+    - any
+  categories:
+  - clustering
+  - packaging
+  dependencies: []

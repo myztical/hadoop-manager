@@ -1,0 +1,24 @@
+---
+- include: "download_hadoop.yml"
+  when: action == 'download'
+
+- include: "provision.yml"
+  when: action == 'provision'
+
+- include: "update_cluster_config.yml"
+  when: action == 'update_cluster_conf'
+
+- include: "format_hdfs.yml"
+  when: action == 'format_hdfs'
+
+- include: "start_service.yml"
+  when: action == 'start_namenode' or action == 'start_slave' 
+                                   or action == 'start_resource_manager' 
+                                   or action == 'start_webapp_proxy' 
+                                   or action == 'start_jobhistory_server'
+
+- include: "stop_service.yml"
+  when: action == 'stop_namenode' or action == 'stop_slave'
+                                  or action == 'stop_resource_manager'
+                                  or action == 'stop_webapp_proxy'
+                                  or action == 'stop_jobhistory_server'

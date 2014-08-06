@@ -1,0 +1,86 @@
+<configuration>
+<property>
+    <name>yarn.acl.enable</name>
+    <value>false</value>
+</property>
+<property>
+    <name>yarn.admin.acl</name>
+    <value>*</value>
+</property>
+<property>
+<property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>false</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.address</name>
+    <value>{% for host in groups['ResourceManager'] %} {{ host }} {% endfor %}:9001</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>{% for host in groups['ResourceManager'] %} {{ host }} {% endfor %}:9002</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>{% for host in groups['ResourceManager'] %} {{ host }} {% endfor %}:9003</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.admin.address</name>
+    <value>{% for host in groups['ResourceManager'] %} {{ host }} {% endfor %}:9004</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.webapp.address</name>
+    <value>{% for host in groups['ResourceManager'] %} {{ host }} {% endfor %}:9005</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.scheduler.class</name>
+    <value>CapacityScheduler</value>
+</property>
+<property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>100</value>
+</property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>1000</value>
+</property>
+<property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>2000</value>
+</property>
+<property>
+    <name>yarn.nodemanager.vmem-pmem-ratio</name>
+    <value>1</value>
+</property>
+<property>
+    <name>yarn.nodemanager.local-dirs</name>
+    <value>{{ namenode_local_dirs }}</value>
+</property>
+<property>
+    <name>yarn.nodemanager.log-dirs</name>
+    <value>{{ namenode_log_dirs }}</value>
+</property>
+<property>
+    <name>yarn.nodemanager.log.retain-seconds</name>
+    <value>10800</value>
+</property>
+<property>
+    <name>yarn.nodemanager.remote-app-log-dir</name>
+    <value>/logs</value>
+</property>
+<property>
+    <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
+    <value>logs</value>
+</property>
+<property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+</property>
+<property>
+    <name>yarn.log-aggregation.retain-seconds</name>
+    <value>-1</value>
+</property>
+<property>
+    <name>yarn.log-aggregation.retain-check-interval-seconds</name>
+    <value>-1</value>
+</property>
+</configuration>

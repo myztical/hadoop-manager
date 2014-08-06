@@ -1,0 +1,34 @@
+---
+# Update Configuration
+- name: update slaves configuration file
+  shell: cat "{{ hostfile }}" | sed -n '/\[slaves\]/,/^$/p' | grep -v "\[" > {{ install_directory }}/hadoop/etc/hadoop/slaves
+  when: action == 'update_cluster_conf'
+  delegate_to: 127.0.0.1
+
+- name: Populate core-site.xml configuration file
+  template: src=core-site.xml.j2 dest={{ install_directory }}/hadoop/etc/hadoop/core-site.xml
+  when: action == 'update_cluster_conf'
+
+- name: Populate hdfs-site.xml configuration file
+  template: src=hdfs-site.xml.j2 dest={{ install_directory }}/hadoop/etc/hadoop/hdfs-site.xml
+  when: action == 'update_cluster_conf'
+
+- name: Populate mapred-site.xml configuration file
+  template: src=mapred-site.xml.j2 dest={{ install_directory }}/hadoop/etc/hadoop/mapred-site.xml
+  when: action == 'update_cluster_conf'
+
+- name: Populate yarn-site.xml configuration file
+  template: src=yarn-site.xml.j2 dest={{ install_directory }}/hadoop/etc/hadoop/yarn-site.xml
+  when: action == 'update_cluster_conf'
+
+- name: Set HADOOP_CONF_DIR environmental variables in hadoop-env.sh
+  shell: echo "HADOOP_CONF_DIR={{ install_directory }}/hadoop/etc/hadoop" >> {{ install_directory }}/hadoop/etc/hadoop/hadoop-env.sh
+  when: action == 'update_cluster_conf'
+
+- name: Set JAVA_HOME environmental variable in hadoop-env.sh
+  shell: echo "JAVA_HOME={{ java_home }}" >> "{{ install_directory }}/hadoop/etc/hadoop/hadoop-env.sh"
+  when: action == 'update_cluster_conf'
+
+- name: Set JSVC_HOME environmental variable in hadoop-env.sh
+  shell: echo "JSVC_HOME={{ jsvc_home }}" >> "{{ install_directory }}/hadoop/etc/hadoop/hadoop-env.sh"
+  when: action == 'update_cluster_conf'

@@ -1,0 +1,7 @@
+---
+- name: Download Hadoop Distribution
+  shell: cd {{ install_directory }} && wget {{ distribution_link }} && tar xzvf hadoop-*.tar.gz && rm -f hadoop*tar.gz* && mv hadoop-* hadoop
+#  run_once: true -- this action will be availabe in ansible version 1.7, which is dev version now.
+#  run_once doesn't work in current release, so 'download' action should be specified to be executed for particular host
+  delegate_to: 127.0.0.1
+  when: action == 'download' 
