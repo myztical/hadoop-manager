@@ -1,5 +1,4 @@
 ---
-# defaults file for provision_hadoop
   hdfs_user_pass: "hdfs"
   yarn_user_pass: "yarn"
   mapred_user_pass: "mapred"
