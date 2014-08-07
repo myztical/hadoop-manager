@@ -3,7 +3,7 @@ Role Name
 
 "hadoop-manager":
 
-Is a role that can be used to provision distribution inpependent hadoop cluster and orchestrate it.
+Is a role that can be used to provision distribution independent hadoop cluster and orchestrate it.
 
 
 Requirements
