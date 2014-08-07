@@ -52,7 +52,18 @@ No dependencies.
 Example Playbook
 -------------------------
 
-See: example_site.yml and example_inventory.ini, that are shipped with a role.
+See: 
+example_site.yml and example_inventory.ini, that are shipped with a role.
+
+- hosts: ResourceManager 
+  roles: 
+  - { role: hadoop-manager, action: 'download' }
+
+- hosts: hadoop 
+  roles:
+  - { role: hadoop-manager, action: 'provision' }
+  - { role: hadoop-manager, action: 'update_cluster_conf' }
+  - { role: hadoop-manager, action: 'format_hdfs' }
 
 License
 -------
