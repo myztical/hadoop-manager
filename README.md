@@ -21,11 +21,10 @@ Requirements
 Role Variables
 --------------
 
-Can be found in: "vars/main.yml"
-
 NOTE:
-  variables should point to
-  existing directories.
+  variables should point to existing directories.
+
+Can be found in: "vars/main.yml"
 
 - java_home: "{{ lookup('env', 'JAVA_HOME')  }}"
 - jsvc_home: "{{ lookup('env', 'JSVC_HOME')  }}"
