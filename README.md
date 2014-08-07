@@ -4,7 +4,7 @@ Role Name
 "hadoop-manager":
 
 Is a role that can be used to provision distribution independent hadoop cluster and orchestrate it.
-Meaning that it can be Installed on anything capable running official Hadoop Java version
+Meaning that it can be used to install Hadoop on anything capable running one of the official Hadoop Java versions.
 
 (see: http://wiki.apache.org/hadoop/HadoopJavaVersions )
 
